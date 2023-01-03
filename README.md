@@ -109,7 +109,6 @@ Die hierarchische Struktur des Netzes besteht aus einer Anzahl von Gruppenabstra
 ![PointNet-Architektur](images/PointNet++Architecture.PNG "Quelle: https://medium.com/@sanketgujar95/https-medium-com-sanketgujar95-pointnetplus-5d2642560c0d")
 
 
-## Optional drittes
 
 # Vergleich der Ergebnisse
 
@@ -118,4 +117,3 @@ Die hierarchische Struktur des Netzes besteht aus einer Anzahl von Gruppenabstra
 Pointnet erzielte auf den Bildern ohne Transformation in der 27. Epoche 97,66% Accuracy und wurde daraufhin von dem early stopping abgebrochen. Der Loss war der niedrigste mit 0.706975. Im folgenden wurden die Transformationen immer mit einer davorgeschaltenen Rotation ausgeführt: Cutout lieferte dabei die beste Accuracy mit 98%, allerdings war der Loss höher mit 0.755837 als bei dem Training ohne Transformationen. Das Training wurde dabei nach der 7. Epoche vom Early Stopping abgebrochen. Das nächstbeste Ergebnis lieferte Shear mit 97.67% Accuracy und einem Loss von 0.809741, abgebrochen nach der 21. Epoche. Anschließend kommt Gaussian_noise mit einer Accuracy von 96% und einem Loss von 1.2224906, das schon nach der 3. Epoche von dem Early Stopping abgebrochen wurde. Als schlechtestes performte Background_noise mit einer Accuracy von 83% und einem Loss von 5.154395%, welches nach der 8. Eoche abgebrochen wurde.
 
 
-## Klassifizierung
