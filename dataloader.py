@@ -33,7 +33,9 @@ test_transform = transforms.Compose([
 transform = transforms.Compose([PointSampler(1024)])
 transform2 = transforms.Compose([Normalize()])
 
+#Repräsentiert den Datensatz
 class Dataset:
+  #Liest den Datensatz ein
     def __init__(self, mode, transform):
         self.transform = transform
         self.mode = mode
@@ -47,7 +49,7 @@ class Dataset:
                 self.files.append(os.path.join(DATAPATH, folder, mode, file))
                 self.classes.append(i)
             i+=1
-        
+    #optionale Transformation: Vereinfachtes CutMix-R
     def cutmix_r(self, idx):
         idx = idx % len(self.files)
         idx2 = random.randint(0, len(self.files)-1)
@@ -78,6 +80,7 @@ class Dataset:
             cl = self.classes[idx]
         return pointcloud, cl
     
+    #optionale Transformation: vereinfachtes CutMix K
     def cutmix_k(self, idx):
         idx = idx % len(self.files)
         idx2 = random.randint(0, len(self.files)-1)
@@ -137,11 +140,12 @@ class Dataset:
         else:
             cl = self.classes[idx]
         return pointcloud, cl
-
+    
+    #Gibt die Länge des Datensatzes zurück
     def __len__(self):
             return len(self.files)
         
-
+    #Gibt ein Item des Datensatzes zurück bestehend aus den Punktend der Pointcloud und der Klasse
     def __getitem__(self, idx):
         if not idx >= len(self.files):
             with open(Path(self.files[idx]), 'r') as f:
@@ -151,7 +155,7 @@ class Dataset:
             return pointcloud, self.classes[idx]
 
 
-
+#Dient der Visualisierung der Transformationen der Pointcloud
 def __main__():
     #train_ds = Dataset("train", transform=train_transform)
     #test_ds = Dataset("test", transform=test_transform)
