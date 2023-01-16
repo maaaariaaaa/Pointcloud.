@@ -348,5 +348,3 @@ class Impulse_noise(object):
 #         c = [N//15, N//10, N//8, N//6, N//2, 3 * N//4][self.severity-1]
 #         index = np.random.choice(N, N - c, replace=False)
 #         return pointcloud[index]
-
-
