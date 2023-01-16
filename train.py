@@ -10,6 +10,7 @@ import torch.nn.functional as F
 import tqdm
 from earlystopping import EarlyStopping
 
+#Transformationen des Training-Datensatzes
 train_transform = transforms.Compose([
                                 PointSampler(1024),
                                 Normalize(),
@@ -19,13 +20,14 @@ train_transform = transforms.Compose([
                                 ToTensor()
                               ])
 
+#Transformationen des Validierungsdatensatzes
 test_transform = transforms.Compose([
                                 PointSampler(1024),
                                 Normalize(),
                                 ToTensor()
                               ])
 
-
+#Training des Models
 def train(model, train_loader, val_loader=None,  epochs=300, batchSize=32, feature_transform=False, is1=True):
     early_stopping = EarlyStopping(patience=10, verbose=True)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -34,7 +36,7 @@ def train(model, train_loader, val_loader=None,  epochs=300, batchSize=32, featu
     
     num_batch = len(train_loader)
     for epoch in range(0, epochs):
-        #TRAIN
+        #Trainiere
         for i, data in enumerate(train_loader, 0):
             points, target = data
             #target = target[:, 0]
@@ -74,7 +76,7 @@ def train(model, train_loader, val_loader=None,  epochs=300, batchSize=32, featu
 
         torch.save(model.state_dict(), 'model_w.pt')
 
-        #EVALUATE
+        #evaluiere
         total_correct = 0
         total_testset = 0
         valid_loss = 0
@@ -96,13 +98,14 @@ def train(model, train_loader, val_loader=None,  epochs=300, batchSize=32, featu
                 total_testset += points.size()[0]
         
         print("val accuracy {}".format(total_correct / float(total_testset)))
-        
+        #Earlystopping
         early_stopping(valid_loss, model)
         
         if early_stopping.early_stop:
             print("Early stopping")
             break
 
+#Trainiert das Model. Je nach dem was auskommentiert mit Pointnet oder Pointnet++
 def __main__():
     #model = PointNetCls(k=4)
     model = Pointnet2(4, normal_channel=False)
