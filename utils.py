@@ -2,6 +2,7 @@ import numpy as np
 import open3d as o3d
 import os
 
+#Visualisiert die Pointcloud
 def display_pointcloud(xyz, point_size=1) -> None:
     xyz = np.nan_to_num(xyz).reshape(-1, 3)
     point_cloud_open3d = o3d.geometry.PointCloud(o3d.utility.Vector3dVector(xyz))
@@ -22,6 +23,7 @@ def display_pointcloud(xyz, point_size=1) -> None:
     visualizer.destroy_window()
     return
 
+#Liest die Punkte der Pointcloud ein
 def read_off(file):
     off_header = file.readline().strip()
     if 'OFF' == off_header:
