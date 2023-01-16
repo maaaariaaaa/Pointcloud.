@@ -111,9 +111,17 @@ Die hierarchische Struktur des Netzes besteht aus einer Anzahl von Gruppenabstra
 
 
 # Vergleich der Ergebnisse
+Die Ergebnisse auf dem Validierungsdatensatz mit Pointnet und Pointnet++ lassen sich folgenden Tabellen entnehmen. Die Angaben sind auf zwei Nachkommastellen gerun-det. Vor die Transformationen Cutout, Gaussian_noise, Background_noise und Shear wurde die Rotation geschalten. Die Epochen geben an, wann Early Stopping das Training unterbrochen hat.
 
-##Ergebnis Pointnet mit Bildern ohne Transformation
+![Tabelle](images/TABELLE.PNG)
 
-Pointnet erzielte auf den Bildern ohne Transformation in der 27. Epoche 97,66% Accuracy und wurde daraufhin von dem early stopping abgebrochen. Der Loss war der niedrigste mit 0.706975. Im folgenden wurden die Transformationen immer mit einer davorgeschaltenen Rotation ausgeführt: Cutout lieferte dabei die beste Accuracy mit 98%, allerdings war der Loss höher mit 0.755837 als bei dem Training ohne Transformationen. Das Training wurde dabei nach der 7. Epoche vom Early Stopping abgebrochen. Das nächstbeste Ergebnis lieferte Shear mit 97.67% Accuracy und einem Loss von 0.809741, abgebrochen nach der 21. Epoche. Anschließend kommt Gaussian_noise mit einer Accuracy von 96% und einem Loss von 1.2224906, das schon nach der 3. Epoche von dem Early Stopping abgebrochen wurde. Als schlechtestes performte Background_noise mit einer Accuracy von 83% und einem Loss von 5.154395%, welches nach der 8. Eoche abgebrochen wurde.
+In diesen Tabellen lässt sich erkennen, dass PoinNet++ sich auf dem Validierungsdaten-satz und dem trainierten Modell ohne Transformationen, mit Cutout, mit Back-ground_noise und mit Shear besser geschlagen hat als PointNet. Dabei wurden auf dem Validierungsdatensatz keine Transformationen angewandt, um das Ergebnis auf die Daten des Datensatzes anzupassen.
+Folgende Tabellen geben an, was die trainierten Modelle auf dem Testdatensatz voll-bracht haben. Dabei wurde der Testdatensatz einmal normal und je einmal mit jeder Transformation augmentiert an die Modelle übergeben, um deren Ergebnisse vergleichen zu können. Die Angaben in den Tabellen sind in Prozent und auf zwei Nachkommastellen gerundet. 
+
+![Tabelle](images/TABELLE1.PNG)
+
+![Tabelle](images/TABELLE2.PNG)
+
+Wie man an der Tabelle sehen kann, scheinen sowohl PointNet als auch PointNet++ Probleme mit der Klassifizierung zu haben, wenn Background_noise oder alle Transfor-mationen zusammen angewandt werden, wobei Pointnet++ besser damit umzugehen scheint. Um gute Ergebnisse bei solchen Eingabedaten zu erzielen, sollte das Modell schon mit solchen Daten trainiert worden sein. Pointnet scheint gegen Transformationen mittels Cutout und Gaussian_noise einigermaßen robust zu sein, und auch bei Shear las-sen sich noch gute Ergebnisse erzielen. Pointnet++ scheint auch gegen Transformationen mittels Cutout und Shear einigermaßen robust, wobei sich mit Gaussian_noise auch noch gute Ergebnisse erzielen lassen. Besonders bei den Eingabedaten, die mit Back-ground_noise und allen Transformationen verändert wurden, erkennt man Unterschiede zwischen Pointnet und Pointnet++. Dabei scheint Pointnet++ besser abzuschneiden als Pointnet. 
 
 
