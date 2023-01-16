@@ -12,17 +12,17 @@ from earlystopping import EarlyStopping
 
 ROOT_PATH = os.path.abspath('./')
 
-
+#Transformationen auf dem Test-Datensatz
 test_transform = transforms.Compose([
                                 PointSampler(1024),
                                 Normalize(),
                                 ToTensor()
                               ])
 
-
+#Evaluiert das Model auf dem Testdatensatz
 def test(model, test_loader, device, is1=True):
         model.eval()
-        #EVALUATE
+        #Evaluiere
         total_correct = 0
         total_testset = 0
         valid_loss = 0
@@ -44,7 +44,9 @@ def test(model, test_loader, device, is1=True):
         
         print("val accuracy {}".format(total_correct / float(total_testset)))
         
-
+#Evaluiert das Model auf dem Testdatensatz. 
+#Der Pfad gibt an, welcher Checkpoint dafür verwendet wird.
+#Dabei ist anzupassen, ob der Checkpoint von Pointnet oder Pointnet++ stammt.
 def __main__():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     #model = PointNetCls(k=4)
