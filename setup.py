@@ -4,6 +4,8 @@ import numpy as np
 import shutil
 from utils import create_dirs
 
+#Verschiebt eine bestimmte Anzahl der Dateien einer bestimmten Klasse an einen 
+#bestimmten Ort (Pfad).
 def move(files, classes, classnum, movenum, path):
     DATAPATH = os.path.abspath(os.path.join('ModelNet40'))
     idx = np.where(classes == classnum)[0]
@@ -14,6 +16,8 @@ def move(files, classes, classnum, movenum, path):
     for i in files_0:
         shutil.move(i, os.path.join(DATAPATH, path, 'val'))
 
+#Dient der Erstellung des Evaluierungs-Datensatzes, weil bei ModelNet40
+#Nur Test- und Trainingsdatensatz angegeben sind.
 def setup():
     DATAPATH = os.path.abspath(os.path.join('ModelNet40'))
     folders = [dir for dir in sorted(os.listdir(Path(DATAPATH))) if os.path.isdir(Path(DATAPATH)/dir)]
