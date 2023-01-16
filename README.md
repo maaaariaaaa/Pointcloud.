@@ -1,6 +1,6 @@
 # KI Pointcloud Projekt 
 
-## Beschreibung des Datensates
+## Beschreibung des Datensatzes
 
 Der benutzte Datensatz ist der ModelNet40-Datensatz von folgender Website: https://modelnet.cs.princeton.edu/. Er besteht aus 40 Klassen alltäglicher Objekte, wie beispielsweise eine Tür, ein Auto oder eine Flasche. Für jedes Objekt gibt es einen einzelnen Ordner, dessen Ordner wieder aufgeteilt ist in train und test. Diese enthalten verschiedene Textfiles, die die x, y und z-Koordinaten der Punkte der Pointcloud enthalten. Im folgenden ist ein Beispiel einer Vase bestehend aus 1024 Pointcloud-Punkten zu sehen:
 
