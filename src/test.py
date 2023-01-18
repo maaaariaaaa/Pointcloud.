@@ -52,7 +52,7 @@ def __main__():
     #model = PointNetCls(k=4)
     model = Pointnet2(4, normal_channel=False)
     model = model.float()
-    model.load_state_dict(torch.load(os.path.join(ROOT_PATH, 'data', 'checkpoint_cutout_pointnet2.pt'), map_location=device))
+    model.load_state_dict(torch.load(os.path.join(ROOT_PATH, 'data', 'checkpoint_normal.pt'), map_location=device))
     model.to(device)    
     test_ds = Dataset("test", transform=test_transform)
     batchSize=32
