@@ -97,7 +97,7 @@ Auch dies wird verwendet um die Form des Objekts zu verändern. Dabei benutzt ma
 
 Bei dem PointNet wird für den Umgang mit einem ungeordneten Eingabeset eine einzige symmetrische Funktion, also Maxpooling benutzt. Das Netzwerk lernt eine Gruppe von Optimierungsfunktionen und Kriterien, die die interessanten und informativen Punkte der Pointcloud auswählen und den Grund für deren Auswahl kodieren. Die vollverbundenen Schichten des Netzwerks aggregieren diese gelernten optimalen Werte in eine globale Beschreibung der gesamten Form für die Klassifikation oder sie werden für die Vorhersage der Kennzeichnung der einzelnen Punkte. 
 Das Klassifizierungsnetzwerk bekommt n Punkte als Eingabe und wendet darauf Eingabe und Merkmalstransformationen an. Durch Maxpooling werden darauffolgend die Merkmale aggregiert. Als Ausgabe erhält man die Klassifikations-scores für m Klassen. Als Erweiterung davon kann man das Segmentierungsnetzwerk anschließen, um eine Segmentierung durchzuführen. Es konkateniert globale und lokale Eigenschaften und gibt für jeden Punkt den scores aus. 
-Bei Pointnet werden für alle Schichten, die ReLU als Aktivierungsfunktion benutzen, auch die Batchnorm angewandt. Mlp steht für Multi-schicht Perceptron, wobei die Zahlen in den Klammern die Schichtgrößen sind. Dropoutschichten werden für das letzte Multischicht-Perceptron in dem Klassifizierungsnetz benuztzt. 
+Bei PointNet werden für alle Schichten, die ReLU als Aktivierungsfunktion benutzen, auch die Batchnorm angewandt. Mlp steht für Multi-schicht Perceptron, wobei die Zahlen in den Klammern die Schichtgrößen sind. Dropoutschichten werden für das letzte Multischicht-Perceptron in dem Klassifizierungsnetz benuztzt. 
 
 ![PointNet-Architektur](images/PointNetArchitecture.PNG "Quelle: https://stanford.edu/~rqi/pointnet/")
 
@@ -111,7 +111,7 @@ Die hierarchische Struktur des Netzes besteht aus einer Anzahl von Gruppenabstra
 
 
 # Vergleich der Ergebnisse
-Die Ergebnisse auf dem Validierungsdatensatz mit Pointnet und Pointnet++ lassen sich folgenden Tabellen entnehmen. Die Angaben sind auf zwei Nachkommastellen gerun-det. Vor die Transformationen Cutout, Gaussian_noise, Background_noise und Shear wurde die Rotation geschalten. Die Epochen geben an, wann Early Stopping das Training unterbrochen hat.
+Die Ergebnisse auf dem Validierungsdatensatz mit PointNet und PointNet++ lassen sich folgenden Tabellen entnehmen. Die Angaben sind auf zwei Nachkommastellen gerun-det. Vor die Transformationen Cutout, Gaussian_noise, Background_noise und Shear wurde die Rotation geschalten. Die Epochen geben an, wann Early Stopping das Training unterbrochen hat.
 
 ![Tabelle](images/TABELLE.PNG)
 
@@ -122,6 +122,6 @@ Folgende Tabellen geben an, was die trainierten Modelle auf dem Testdatensatz vo
 
 ![Tabelle](images/TABELLE2.PNG)
 
-Wie man an der Tabelle sehen kann, scheinen sowohl PointNet als auch PointNet++ Probleme mit der Klassifizierung zu haben, wenn Background_noise oder alle Transfor-mationen zusammen angewandt werden, wobei Pointnet++ besser damit umzugehen scheint. Um gute Ergebnisse bei solchen Eingabedaten zu erzielen, sollte das Modell schon mit solchen Daten trainiert worden sein. Pointnet scheint gegen Transformationen mittels Cutout und Gaussian_noise einigermaßen robust zu sein, und auch bei Shear las-sen sich noch gute Ergebnisse erzielen. Pointnet++ scheint auch gegen Transformationen mittels Cutout und Shear einigermaßen robust, wobei sich mit Gaussian_noise auch noch gute Ergebnisse erzielen lassen. Besonders bei den Eingabedaten, die mit Back-ground_noise und allen Transformationen verändert wurden, erkennt man Unterschiede zwischen Pointnet und Pointnet++. Dabei scheint Pointnet++ besser abzuschneiden als Pointnet. 
+Wie man an der Tabelle sehen kann, scheinen sowohl PointNet als auch PointNet++ Probleme mit der Klassifizierung zu haben, wenn Background_noise oder alle Transfor-mationen zusammen angewandt werden, wobei PointNet++ besser damit umzugehen scheint. Um gute Ergebnisse bei solchen Eingabedaten zu erzielen, sollte das Modell schon mit solchen Daten trainiert worden sein. PointNet scheint gegen Transformationen mittels Cutout und Gaussian_noise einigermaßen robust zu sein, und auch bei Shear las-sen sich noch gute Ergebnisse erzielen. PointNet++ scheint auch gegen Transformationen mittels Cutout und Shear einigermaßen robust, wobei sich mit Gaussian_noise auch noch gute Ergebnisse erzielen lassen. Besonders bei den Eingabedaten, die mit Back-ground_noise und allen Transformationen verändert wurden, erkennt man Unterschiede zwischen PointNet und PointNet++. Dabei scheint PointNet++ besser abzuschneiden als PointNet. 
 
 
